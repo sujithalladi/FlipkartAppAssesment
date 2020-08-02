@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Flipkart Application Test Suite">
+	<test name = "Flipkart Application Test Cases">	
+		<classes>
+			<class name = "com.flipkart.qa.testCases.LoginPageTest"> </class>
+			<class name ="com.flipkart.qa.testCases.HomePageTest"> </class>
+		</classes>
+	</test>
+</suite>

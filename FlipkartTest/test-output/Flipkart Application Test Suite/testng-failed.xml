@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Flipkart Application Test Suite]">
+  <test name="Flipkart Application Test Cases">
+    <classes>
+      <class name="com.flipkart.qa.testCases.LoginPageTest"/>
+      <class name="com.flipkart.qa.testCases.HomePageTest"/>
+      <class name="com.flipkart.qa.testCases.SearchPageTest"/>
+    </classes>
+  </test> <!-- Flipkart Application Test Cases -->
+  <test name="Flipkart Application Test Cases(failed)">
+    <classes>
+      <class name="com.flipkart.qa.testCases.SearchPageTest">
+        <methods>
+          <include name="setup"/>
+          <include name="teardown"/>
+          <include name="HomepageTest"/>
+          <include name="searchForCameraToPurchase"/>
+        </methods>
+      </class> <!-- com.flipkart.qa.testCases.SearchPageTest -->
+      <class name="com.flipkart.qa.testCases.HomePageTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- com.flipkart.qa.testCases.HomePageTest -->
+      <class name="com.flipkart.qa.testCases.LoginPageTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.flipkart.qa.testCases.LoginPageTest -->
+    </classes>
+  </test> <!-- Flipkart Application Test Cases(failed) -->
+</suite> <!-- Failed suite [Flipkart Application Test Suite] -->

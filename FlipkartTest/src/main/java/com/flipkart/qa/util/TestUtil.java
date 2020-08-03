@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Set;
 
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -19,12 +20,9 @@ public class TestUtil extends TestBase {
 	public static long PAGE_LOAD_TIMEOUT = 30;
 	public static long IMPLICIT_WAIT = 20;
 	
-	public static String MyTestData_Path = "‪D:/FlipkartTestData.xlsx";
-
 	public void switchToFrame(){
 		driver.switchTo().frame("mainpanel");
 	}
-
 	
 	public Set<String> getWindowHandles(){
 		return driver.getWindowHandles();
@@ -34,34 +32,32 @@ public class TestUtil extends TestBase {
 		driver.switchTo().window(WindowhandleId);
 	}
 	
-	
 	public static Object[][] getTestData(String sheetName){
 		
 		FileInputStream filepath = null;
+		Object[][] data=null;
 		try{
-			filepath = new FileInputStream("D:/FlipkartTestData.xlsx");
+			filepath = new FileInputStream("src/main/resources/FlipkartTestData.xlsx");
 			Workbook book = WorkbookFactory.create(filepath);
 			Sheet sheet = book.getSheet(sheetName);
 			int rowCount = sheet.getLastRowNum();
 			int columnCount = sheet.getRow(0).getLastCellNum();
 			
-			Object[][] data = new Object[rowCount][columnCount];
-			
-			for(int i=1;i<rowCount;i++){
-				
+			data = new Object[rowCount][columnCount];
+			 
+			for(int i=0;i<rowCount;i++){
 				for(int j=0;j<columnCount;j++){
-					data[i][j] = sheet.getRow(i).getCell(j).toString();
+					DataFormatter dataFormatter = new DataFormatter();
+					String value = dataFormatter.formatCellValue(sheet.getRow(i+1).getCell(j));
+					data[i][j] = value;
 				}
 			}
 		
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return null;
+		return data;
+		
 	}
 	
-	
-	
-	
-	 
 }

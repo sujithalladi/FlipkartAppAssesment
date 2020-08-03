@@ -38,7 +38,8 @@ public class HomePage extends TestBase{
 		return myAccount.isDisplayed();
 	}
 	
-	public SearchPage SearchForSomethingUsingText(String str) throws IOException{
+	public SearchPage SearchForSomethingUsingText(String str) throws IOException, InterruptedException{
+		Thread.sleep(2000);
 		searchtextbox.click();
 		searchtextbox.sendKeys(str);
 		searchBtn.click();

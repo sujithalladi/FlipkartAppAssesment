@@ -12,7 +12,6 @@ public class LoginPage extends TestBase{
 	
 	//Page Factory -- Object Repository;
 	
-	//Flipkart Application
 	@FindBy(xpath = "//a[text()='Login']")
 	WebElement loginButtonInHomePage;
 	
@@ -31,25 +30,6 @@ public class LoginPage extends TestBase{
 	@FindBy(xpath="//img[@title='Flipkart']")
 	WebElement flipkartLogo;
 	
-	// CRM Application
-//	@FindBy(name="email")
-//	WebElement username;
-//	
-//	@FindBy(name="password")
-//	WebElement password;
-//	
-//	@FindBy(xpath = "//div[text()='Login']")
-//	WebElement loginBtn;
-//
-//	@FindBy(xpath ="//a[text()='Forgot your password?']")
-//	WebElement forgotPwdBtn;
-//	
-//	@FindBy(xpath ="//a[text()='Classic CRM']")
-//	WebElement classicCrmBtn;
-//	
-//	@FindBy(xpath ="//a[text()='Sign Up']")
-//	WebElement signUpBtn;
-
 	//Initialization or initializing the page objects
 	public LoginPage() throws IOException {
 		PageFactory.initElements(driver, this);

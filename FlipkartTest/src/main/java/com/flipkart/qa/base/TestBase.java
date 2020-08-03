@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import com.flipkart.qa.util.TestUtil;
 
@@ -20,7 +22,7 @@ public class TestBase {
 		
 		try {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream("C:/Users/Joel Sujith/workspace/FlipkartTest/src/main/java/com/flipkart/qa/config/config.properties");
+			FileInputStream ip = new FileInputStream("src/main/resources/config.properties");
 			prop.load(ip);
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
@@ -32,17 +34,17 @@ public class TestBase {
 	public static void initialization(){
 		String browserName = prop.getProperty("browser");
 		if(browserName.equalsIgnoreCase("chrome")){
-			System.setProperty("webdriver.chrome.driver", "D://Drivers//chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 			driver = new ChromeDriver();
 		} 
-//		else if(browserName.equalsIgnoreCase("FF")) {
-//			System.setProperty("webdriver.gecko.driver", "D://Drivers//geckodriver.exe");
-//			driver = new FirefoxDriver();
-//		}
-//		else if(browserName.equalsIgnoreCase("ie")) {
-//		System.setProperty("webdriver.gecko.driver", "D://Drivers//internetExplorerdriver.exe");
-//		driver = new FirefoxDriver();
-//	}
+		else if(browserName.equalsIgnoreCase("FF")) {
+			System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+			driver = new FirefoxDriver();
+		}
+		else if(browserName.equalsIgnoreCase("ie")) {
+		System.setProperty("webdriver.gecko.driver", "src/main/resources/IEDriverServer.exe");
+		driver = new InternetExplorerDriver();
+	}
 		
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();

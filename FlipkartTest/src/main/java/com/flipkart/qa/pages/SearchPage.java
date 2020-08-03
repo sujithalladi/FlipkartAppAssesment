@@ -38,8 +38,8 @@ public class SearchPage extends TestBase{
 		return showing.isDisplayed();
 	}
 	
-	public void verifyRelevanceLink(){
-		relevanceLink.isDisplayed();
+	public boolean verifyRelevanceLink(){
+		return relevanceLink.isDisplayed();
 	}
 	public void scrollToTheWebElementAndClick() throws InterruptedException{
 		Thread.sleep(2000);

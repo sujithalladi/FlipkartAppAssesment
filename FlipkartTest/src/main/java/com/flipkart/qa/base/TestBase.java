@@ -22,7 +22,7 @@ public class TestBase {
 		
 		try {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream("src/main/resources/config.properties");
+			FileInputStream ip = new FileInputStream("src/main/resources/Config/config.properties");
 			prop.load(ip);
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
@@ -34,15 +34,15 @@ public class TestBase {
 	public static void initialization(){
 		String browserName = prop.getProperty("browser");
 		if(browserName.equalsIgnoreCase("chrome")){
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver.exe");
 			driver = new ChromeDriver();
 		} 
 		else if(browserName.equalsIgnoreCase("FF")) {
-			System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "src/main/resources/Drivers/geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 		else if(browserName.equalsIgnoreCase("ie")) {
-		System.setProperty("webdriver.gecko.driver", "src/main/resources/IEDriverServer.exe");
+		System.setProperty("webdriver.gecko.driver", "src/main/resources/Drivers/IEDriverServer.exe");
 		driver = new InternetExplorerDriver();
 	}
 		

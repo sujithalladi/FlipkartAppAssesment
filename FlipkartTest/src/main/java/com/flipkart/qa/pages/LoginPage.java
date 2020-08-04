@@ -1,12 +1,17 @@
 package com.flipkart.qa.pages;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.flipkart.qa.base.TestBase;
+import com.flipkart.qa.util.TestUtil;
 
 public class LoginPage extends TestBase{
 	
@@ -15,13 +20,13 @@ public class LoginPage extends TestBase{
 	@FindBy(xpath = "//a[text()='Login']")
 	WebElement loginButtonInHomePage;
 	
-	@FindBy(xpath="//input[@class='_2zrpKA _1dBPDZ']")
+	@FindBy(xpath="//div[@class='_39M2dM JB4AMj']/input[@type='text']")
 	WebElement username;
 	
-	@FindBy(xpath="//input[@class='_2zrpKA _3v41xv _1dBPDZ']")
+	@FindBy(xpath="//div[@class='_39M2dM JB4AMj']/input[@type='password']")
 	WebElement password;
 	
-	@FindBy(xpath = "//button[@class='_2AkmmA _1LctnI _7UHT_c']")
+	@FindBy(xpath = "//div[@class='_1avdGP']/button[@type='submit']")
 	WebElement loginbtn;
 	
 	@FindBy(xpath ="//div[text()='My Account']")
@@ -29,6 +34,7 @@ public class LoginPage extends TestBase{
 	
 	@FindBy(xpath="//img[@title='Flipkart']")
 	WebElement flipkartLogo;
+	
 	
 	//Initialization or initializing the page objects
 	public LoginPage() throws IOException {
@@ -47,13 +53,12 @@ public class LoginPage extends TestBase{
 	}
 	
 	public HomePage Login(String un, String pwd) throws IOException{
-		System.out.println("I am in Login page and");
+
+		TestUtil testUtil = new TestUtil();
+		testUtil.waitForWebElementToLoad(10);
 		username.sendKeys(un);
-		System.out.println("Entered the UN succesfully");
 		password.sendKeys(pwd);
-		System.out.println("Entered the password succesfully");
 		loginbtn.click();
-		System.out.println("clicked on login button");
 		return new HomePage();
 	}
 	

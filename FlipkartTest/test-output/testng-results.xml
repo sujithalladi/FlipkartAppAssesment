@@ -2,44 +2,62 @@
 <testng-results skipped="0" failed="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="42359" started-at="2020-08-03T22:09:43Z" finished-at="2020-08-03T22:10:26Z">
+  <suite name="Default suite" duration-ms="21089" started-at="2020-08-04T08:51:16Z" finished-at="2020-08-04T08:51:37Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="42359" started-at="2020-08-03T22:09:43Z" finished-at="2020-08-03T22:10:26Z">
+    <test name="Default test" duration-ms="21089" started-at="2020-08-04T08:51:16Z" finished-at="2020-08-04T08:51:37Z">
       <class name="com.flipkart.qa.testCases.PaymentPageTest">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="setup" is-config="true" duration-ms="7981" started-at="2020-08-04T03:39:43Z" finished-at="2020-08-04T03:39:51Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@1fbc7afb]" name="setup" is-config="true" duration-ms="8844" started-at="2020-08-04T14:21:16Z" finished-at="2020-08-04T14:21:25Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="HomepageTest()[pri:1, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="HomepageTest" duration-ms="1081" started-at="2020-08-04T03:39:51Z" finished-at="2020-08-04T03:39:52Z">
+        <test-method status="PASS" signature="loginTest(java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:com.flipkart.qa.testCases.PaymentPageTest@1fbc7afb]" name="loginTest" duration-ms="542" started-at="2020-08-04T14:21:26Z" data-provider="getTestData" finished-at="2020-08-04T14:21:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[7829892015]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Flip@1242.]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Nikon]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method status="PASS" signature="HomepageTest()[pri:2, instance:com.flipkart.qa.testCases.PaymentPageTest@1fbc7afb]" name="HomepageTest" duration-ms="3224" started-at="2020-08-04T14:21:27Z" finished-at="2020-08-04T14:21:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- HomepageTest -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="teardown" is-config="true" duration-ms="674" started-at="2020-08-04T03:39:52Z" finished-at="2020-08-04T03:39:53Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- teardown -->
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="setup" is-config="true" duration-ms="6916" started-at="2020-08-04T03:39:53Z" finished-at="2020-08-04T03:40:00Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method status="PASS" signature="searchForItemToBuy()[pri:2, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="searchForItemToBuy" duration-ms="3181" started-at="2020-08-04T03:40:00Z" finished-at="2020-08-04T03:40:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchForItemToBuy -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="teardown" is-config="true" duration-ms="661" started-at="2020-08-04T03:40:03Z" finished-at="2020-08-04T03:40:04Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- teardown -->
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="setup" is-config="true" duration-ms="7410" started-at="2020-08-04T03:40:04Z" finished-at="2020-08-04T03:40:11Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method status="PASS" signature="clickOnBuyNowAndVerifyDetailsOnCheckoutPage()[pri:3, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="clickOnBuyNowAndVerifyDetailsOnCheckoutPage" duration-ms="13758" started-at="2020-08-04T03:40:11Z" finished-at="2020-08-04T03:40:25Z">
+        <test-method status="PASS" signature="clickOnBuyNowAndVerifyDetailsOnCheckoutPage(java.lang.String, java.lang.String, java.lang.String)[pri:3, instance:com.flipkart.qa.testCases.PaymentPageTest@1fbc7afb]" name="clickOnBuyNowAndVerifyDetailsOnCheckoutPage" duration-ms="6371" started-at="2020-08-04T14:21:30Z" data-provider="getTestData" finished-at="2020-08-04T14:21:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[7829892015]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Flip@1242.]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Nikon]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clickOnBuyNowAndVerifyDetailsOnCheckoutPage -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@11531931]" name="teardown" is-config="true" duration-ms="668" started-at="2020-08-04T03:40:25Z" finished-at="2020-08-04T03:40:26Z">
+        <test-method status="PASS" signature="teardown()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@1fbc7afb]" name="teardown" is-config="true" duration-ms="715" started-at="2020-08-04T14:21:37Z" finished-at="2020-08-04T14:21:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

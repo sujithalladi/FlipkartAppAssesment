@@ -5,16 +5,19 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.flipkart.qa.base.TestBase;
 import com.flipkart.qa.pages.HomePage;
 import com.flipkart.qa.pages.LoginPage;
+import com.flipkart.qa.util.TestUtil;
 
 public class LoginPageTest extends TestBase{
 
 	LoginPage loginPage;
 	HomePage homePage;
+	
 	
 	public LoginPageTest() throws IOException {
 		/*We are calling super class construtor to initialize our properties file
@@ -33,22 +36,26 @@ public class LoginPageTest extends TestBase{
 	public void loginPageTitleTest(){
 		String title = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(title, "Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!");
-		System.out.println("Title is displayed correctly");
+
 	}
 	
 	@Test(priority=2)
 	public void flipkartLogoTest(){
 		boolean flag = loginPage.flipkartLogoTest();
-		Assert.assertTrue(flag);  // if flag is true assertion will pass else it will fail
-		System.out.println("Logo is displayed correctly");
-	}
+		Assert.assertTrue(flag);  
+	}	
 	
-	@Test(priority=3)
-	public void loginTest() throws IOException{
-		
-		homePage = loginPage.Login(prop.getProperty("username"), prop.getProperty("password"));
-		System.out.println("Logged in and Landed in Home page succesfully");
+	@Test(priority=3, dataProvider = "getTestData")
+	public void loginTest(String username, String password, String searchForItem) throws IOException, InterruptedException {
+		homePage = loginPage.Login(username, password);
 	}
+
+	@DataProvider
+	public Object[][] getTestData() {
+		Object[][] data = TestUtil.getTestData("Credentials");
+		return data;
+	}
+
 	
 	@AfterMethod
 	public void tearDown(){

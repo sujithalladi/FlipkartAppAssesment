@@ -7,6 +7,7 @@ import java.util.Set;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.flipkart.qa.base.TestBase;
@@ -26,65 +27,61 @@ public class SearchPageTest extends TestBase{
 	
 	public SearchPageTest() throws IOException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	@BeforeTest
 	public void setup() throws IOException{
 		initialization();
-		loginPage = new LoginPage();	
+		loginPage = new LoginPage();
+	}
+
+	@DataProvider
+	public Object[][] getTestData() {
+		Object[][] data = TestUtil.getTestData("Credentials");
+		return data;
+	}
+	
+	@Test(priority=1, dataProvider = "getTestData")
+	public void login(String username, String password, String searchForItem) throws IOException, InterruptedException {
 		boolean flag = loginPage.flipkartLogoTest();
 		Assert.assertTrue(flag);
 		String loginTitle = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(loginTitle, "Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!");
-		homePage = loginPage.Login(prop.getProperty("username"), prop.getProperty("password"));
-		System.out.println("Logged in and Landed in Home page succesfully");			
+		homePage = loginPage.Login(username, password);
 	}
-
 	
-	@Test(priority=1)
+	@Test(priority=2)
 	public void HomepageTest() throws IOException{
 		boolean flag = homePage.verifyMyaccountText();
 		Assert.assertTrue(flag);
-		System.out.println("MyAccount is displayed in Home page");
 		homePage.verifyHomePageLogo();
 		String homepageTitle = homePage.validateHomepageTitle();
 		Assert.assertEquals(homepageTitle, "Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!");
 	}
 	
-	@Test(priority=2)
-	public void searchForCameraToPurchase() throws IOException, InterruptedException{
-		
+	@Test(priority=3, dataProvider = "getTestData")
+	public void searchForCameraToPurchase(String username, String password, String searchForItem) throws IOException, InterruptedException{
 		searchPage = new SearchPage();
-		searchPage = homePage.SearchForSomethingUsingText("Nikon");
+		searchPage = homePage.SearchForSomethingUsingText(searchForItem);
 		searchPage.verifyShowingTextForSearchedText();
 		searchPage.verifyRelevanceLink();
 		searchPage.scrollToTheWebElementAndClick();
-		
 		Set<String> WindowIds = driver.getWindowHandles();
 		Iterator<String> itr = WindowIds.iterator();
-		String parentId = itr.next();
-		System.out.println(parentId);
+		String parentId = itr.next();		
 		String childId = itr.next();
-		System.out.println(childId);
-		
-		System.out.println(driver.getWindowHandle());
 		driver.switchTo().window(childId);
-		
-		boolean flag = searchPage.verifyAddToCartButton();
-		Assert.assertTrue(flag);
-		
-		paymentPage = searchPage.clickOnBuyNowButton();
-		
+		boolean addToCartFlag = searchPage.verifyAddToCartButton();
+		Assert.assertTrue(addToCartFlag);
+		boolean buyNowFlag = searchPage.verifyBuyNowButton();
+		Assert.assertTrue(buyNowFlag);
 		driver.close();
 		driver.switchTo().window(parentId);
-		
 	}
 	
 	@AfterTest
 	public void teardown(){
-		System.out.println("Test exection is done");
-		//driver.quit();
+		driver.quit();
 	}
 	
 }

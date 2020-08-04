@@ -3,58 +3,65 @@ package com.flipkart.qa.testCases;
 import java.io.IOException;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.flipkart.qa.base.TestBase;
 import com.flipkart.qa.pages.HomePage;
 import com.flipkart.qa.pages.LoginPage;
 import com.flipkart.qa.pages.SearchPage;
+import com.flipkart.qa.util.TestUtil;
 
-public class HomePageTest extends TestBase{
+public class HomePageTest extends TestBase {
 
 	HomePage homepage;
 	LoginPage loginPage;
 	SearchPage searchPage;
+
 	public HomePageTest() throws IOException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	@BeforeMethod
-	public void setUp() throws IOException{
+	@BeforeTest
+	public void setUp() throws IOException {
 		initialization();
-		loginPage = new LoginPage();	
-		homepage = loginPage.Login(prop.getProperty("username"), prop.getProperty("password"));	
+		loginPage = new LoginPage();
 	}
-	
-	//@Test(priority=1)
-	public void verifyHomePageExploreLogo(){
+
+	@DataProvider
+	public Object[][] getTestData() {
+		Object[][] data = TestUtil.getTestData("Credentials");
+		return data;
+	}
+
+	@Test(priority = 1, dataProvider = "getTestData")
+	public void login(String username, String password, String searchForItem) throws IOException, InterruptedException {
+		homepage = loginPage.Login(username, password);
+	}
+
+	@Test(priority = 2)
+	public void verifyHomePageExploreLogo() {
 		boolean logoflag = homepage.verifyHomePageLogo();
 		Assert.assertTrue(logoflag);
-		System.out.println("Explore logo is displayed");
 	}
-	
-	//@Test(priority=2)
-	public void verifyMyAccount() throws InterruptedException{
-		Thread.sleep(5000);
+
+	@Test(priority = 2)
+	public void verifyMyAccount() throws InterruptedException {
 		boolean flag = homepage.verifyMyaccountText();
 		Assert.assertTrue(flag);
-		System.out.println("My account is displayed");
 	}
-	
-	@Test(priority=3)
-	public void searchForSomethingToBuy() throws InterruptedException, IOException{
-		Thread.sleep(5000);
-		searchPage = homepage.SearchForSomethingUsingText(prop.getProperty("itemtobuy"));
-		Thread.sleep(5000);
-		System.out.println("Searched for Nikon");
+
+	@Test(priority = 3, dataProvider = "getTestData")
+	public void searchForSomethingToBuy(String username, String password, String searchForItem)
+			throws InterruptedException, IOException {
+		searchPage = homepage.SearchForSomethingUsingText(searchForItem);
 	}
-	
-	@AfterMethod
-	public void teardown(){
+
+	@AfterTest
+	public void teardown() {
 		driver.quit();
 	}
-	
+
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.flipkart.qa.base.TestBase;
+import com.flipkart.qa.util.TestUtil;
 
 public class HomePage extends TestBase{
 
@@ -39,7 +40,8 @@ public class HomePage extends TestBase{
 	}
 	
 	public SearchPage SearchForSomethingUsingText(String str) throws IOException, InterruptedException{
-		Thread.sleep(2000);
+		TestUtil testUtil = new TestUtil();
+		testUtil.waitForWebElementToLoad(10);
 		searchtextbox.click();
 		searchtextbox.sendKeys(str);
 		searchBtn.click();

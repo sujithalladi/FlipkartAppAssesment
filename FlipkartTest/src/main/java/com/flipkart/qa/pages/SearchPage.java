@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.flipkart.qa.base.TestBase;
+import com.flipkart.qa.util.TestUtil;
 
 public class SearchPage extends TestBase{
 
@@ -41,22 +42,24 @@ public class SearchPage extends TestBase{
 	public boolean verifyRelevanceLink(){
 		return relevanceLink.isDisplayed();
 	}
-	public void scrollToTheWebElementAndClick() throws InterruptedException{
-		Thread.sleep(2000);
+	public void scrollToTheWebElementAndClick() throws InterruptedException, IOException{
+		
+		TestUtil testUtil = new TestUtil();
+		testUtil.waitForWebElementToLoad(10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);", nikonCamera);
-		System.out.println("Srolled to the respective element succesfully");
-		
-		Thread.sleep(2000);
 		Actions act = new Actions(driver);
 		act.moveToElement(nikonCamera).click().build().perform();
-		Thread.sleep(2000);
+		
 	}
 	
 	public boolean verifyAddToCartButton(){
 		return addToCartBtn.isDisplayed();
 	}
 	
+	public boolean verifyBuyNowButton(){
+		return buyNowBtn.isDisplayed();
+	}
 	
 	public PaymentPage clickOnBuyNowButton() throws InterruptedException, IOException{
 		 

@@ -20,9 +20,6 @@ public class SearchPage extends TestBase{
 	
 	@FindBy(xpath="//div[contains(text(),'Relevance')]")
 	WebElement relevanceLink;
-	
-	@FindBy(xpath = "//div[@class='_3BTv9X']")
-	WebElement allCameras;
 		
 	@FindBy(xpath="//button[@class='_2AkmmA _2Npkh4 _2MWPVK']")
 	WebElement addToCartBtn;  

@@ -9,12 +9,6 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.flipkart.qa.base.TestBase;
 
@@ -35,7 +29,7 @@ public class TestUtil extends TestBase {
 		return driver.getWindowHandles();
 	}
 	
-	public void waitForWebElementToLoad(long waittime){
+	public static void waitForWebElementToLoad(long waittime){
 		driver.manage().timeouts().setScriptTimeout(waittime, TimeUnit.SECONDS);
 	}
 	
@@ -70,5 +64,5 @@ public class TestUtil extends TestBase {
 		return data;
 		
 	}
-	
+		
 }

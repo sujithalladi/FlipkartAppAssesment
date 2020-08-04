@@ -1,14 +1,16 @@
 package com.flipkart.qa.pages;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.flipkart.qa.base.TestBase;
+import com.flipkart.qa.testCases.ProductDetails;
 import com.flipkart.qa.util.TestUtil;
 
 public class SearchPage extends TestBase{
@@ -19,17 +21,26 @@ public class SearchPage extends TestBase{
 	@FindBy(xpath="//div[contains(text(),'Relevance')]")
 	WebElement relevanceLink;
 	
-	@FindBy(xpath="//img[@alt='Nikon D5600 (With Basic Accessory Kit) DSLR Camera Body with Single Lens: AF-P DX Nikkor 18-55 MM F/3.5-5.6G VR (16 GB SD Card)']")
-	WebElement nikonCamera;
-  
-	@FindBy(xpath = "//div[contains(text(),'₹42,999')]")
-	WebElement cameraPrice;
-	
+	@FindBy(xpath = "//div[@class='_3BTv9X']")
+	WebElement allCameras;
+		
 	@FindBy(xpath="//button[@class='_2AkmmA _2Npkh4 _2MWPVK']")
 	WebElement addToCartBtn;  
 	
 	@FindBy(xpath="//button[@class='_2AkmmA _2Npkh4 _2kuvG8 _7UHT_c']")
 	WebElement buyNowBtn;
+	
+	@FindBy(xpath = "//span[@class='_35KyD6']")
+	WebElement productName;
+	
+	@FindBy(xpath = "//div[@class='_1vC4OE _3qQ9m1']")
+	WebElement productPrice;
+	
+	@FindBy(xpath = "//div[@id='sellerName']")
+	WebElement productSeller;
+	
+	@FindBy(xpath = "//div[@class='hGSR34 YddkNl']")   
+	WebElement cameraSellerRating;
 	
 	public SearchPage() throws IOException {
 		PageFactory.initElements(driver, this);
@@ -38,21 +49,20 @@ public class SearchPage extends TestBase{
 	public boolean verifyShowingTextForSearchedText(){
 		return showing.isDisplayed();
 	}
-	
+	public String getSellerRating(){
+		return cameraSellerRating.getText();
+	}
 	public boolean verifyRelevanceLink(){
 		return relevanceLink.isDisplayed();
 	}
-	public void scrollToTheWebElementAndClick() throws InterruptedException, IOException{
-		
-		TestUtil testUtil = new TestUtil();
-		testUtil.waitForWebElementToLoad(10);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("arguments[0].scrollIntoView(true);", nikonCamera);
-		Actions act = new Actions(driver);
-		act.moveToElement(nikonCamera).click().build().perform();
-		
-	}
 	
+	public void SelectTheProdcut() throws InterruptedException, IOException{
+		List<WebElement> li = driver.findElements(By.xpath("//div[@class='_3BTv9X']"));
+		Random r = new Random();
+		int randomValue = r.nextInt(li.size());
+		li.get(randomValue).click();
+	}
+
 	public boolean verifyAddToCartButton(){
 		return addToCartBtn.isDisplayed();
 	}
@@ -62,15 +72,19 @@ public class SearchPage extends TestBase{
 	}
 	
 	public PaymentPage clickOnBuyNowButton() throws InterruptedException, IOException{
-		 
+		TestUtil.waitForWebElementToLoad(10);
 		if(buyNowBtn.isDisplayed()){
-			buyNowBtn.click();
-			Thread.sleep(2000);
-		}else{
-			System.out.println(buyNowBtn + " is not available at this moment");
+			buyNowBtn.click();	
 		}
 		return new PaymentPage();
-		
 	}
 	
+	public ProductDetails captureProductDetails(){
+		ProductDetails productDetails=new ProductDetails();
+		productDetails.setName(productName.getText());
+		productDetails.setPrice(productPrice.getText());
+		productDetails.setSeller(productSeller.getText().substring(0, productSeller.getText().length()-3));
+		return productDetails;
+		
+	}
 }

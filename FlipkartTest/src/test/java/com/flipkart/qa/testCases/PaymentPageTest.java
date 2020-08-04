@@ -7,9 +7,9 @@ import java.util.Set;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.flipkart.qa.ExcelLib.ReadDataFromExcel;
 import com.flipkart.qa.base.TestBase;
 import com.flipkart.qa.pages.HomePage;
 import com.flipkart.qa.pages.LoginPage;
@@ -22,12 +22,10 @@ public class PaymentPageTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
 	SearchPage searchPage;
-	TestUtil testUtil;
 	PaymentPage paymentPage;
-
-	public static String actualLoginPageTitle = "Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!";
-	public static String actualCameraName = "Nikon D5600 (With Basic Accessory Kit) DSLR Camera Body with Single Lens: AF-P DX Nikkor 18-55 MM F/3.5-5.6G VR (16 GB SD Card)";
-	public static String actualCameraPrice = "₹42,999";
+	private String username;
+	private String password;
+	private String searchForItem;
 
 	public PaymentPageTest() throws IOException {
 		super();
@@ -37,18 +35,15 @@ public class PaymentPageTest extends TestBase {
 	public void setup() throws IOException {
 		initialization();
 		loginPage = new LoginPage();
+		ReadDataFromExcel readData = new ReadDataFromExcel();
+		readData.ExcelDataConfig();
+		username = readData.getData("Credentials", 1, 0);
+		password = readData.getData("Credentials", 1, 1);
+		searchForItem = readData.getData("Credentials", 1, 2);
 	}
 
-	@DataProvider
-	public Object[][] getTestData() {
-		Object[][] data = TestUtil.getTestData("Credentials");
-		return data;
-	}
-
-	@Test(priority = 1, dataProvider = "getTestData")
-	public void loginTest(String username, String password, String searchForItem)
-			throws IOException, InterruptedException {
-
+	@Test(priority = 1)
+	public void loginTest() throws IOException, InterruptedException {
 		boolean flag = loginPage.flipkartLogoTest();
 		Assert.assertTrue(flag);
 		String loginTitle = loginPage.validateLoginPageTitle();
@@ -62,32 +57,37 @@ public class PaymentPageTest extends TestBase {
 		boolean flag = homePage.verifyMyaccountText();
 		Assert.assertTrue(flag);
 		homePage.verifyHomePageLogo();
-		String homepageTitle = homePage.validateHomepageTitle();
-		Assert.assertEquals(homepageTitle, actualLoginPageTitle);
 	}
 
-	@Test(priority = 3, dataProvider = "getTestData")
-	public void clickOnBuyNowAndVerifyDetailsOnCheckoutPage(String username, String password, String searchForItem)
+	@Test(priority = 3)
+	public void clickOnBuyNowAndVerifyDetailsOnCheckoutPage()
 			throws IOException, InterruptedException {
 		searchPage = new SearchPage();
-		searchPage = homePage.SearchForSomethingUsingText("nikon");
+		searchPage = homePage.SearchForSomethingUsingText(searchForItem);
 		searchPage.verifyShowingTextForSearchedText();
 		searchPage.verifyRelevanceLink();
-		searchPage.scrollToTheWebElementAndClick();
+		searchPage.SelectTheProdcut();
 		Set<String> WindowIds = driver.getWindowHandles();
 		Iterator<String> itr = WindowIds.iterator();
 		String parentId = itr.next();
+		TestUtil.waitForWebElementToLoad(20);
 		String childId = itr.next();
 		driver.switchTo().window(childId);
 		boolean addToCartflag = searchPage.verifyAddToCartButton();
 		Assert.assertTrue(addToCartflag);
 		boolean buyNowflag = searchPage.verifyBuyNowButton();
 		Assert.assertTrue(buyNowflag);
+		ProductDetails selectedProductDetails=searchPage.captureProductDetails();
 		paymentPage = searchPage.clickOnBuyNowButton();
-		String cameraNameDisplayed = paymentPage.verifyingCameraName();
-		Assert.assertEquals(cameraNameDisplayed, actualCameraName);
-		String cameraPriceDisplayed = paymentPage.verifyingCameraPrice();
-		Assert.assertEquals(cameraPriceDisplayed, actualCameraPrice);
+		ProductDetails purchasedProductDetails=paymentPage.captureProductDetails();
+		Assert.assertNotNull(selectedProductDetails);
+		Assert.assertNotNull(purchasedProductDetails);
+		Assert.assertTrue(selectedProductDetails.getName().contains(purchasedProductDetails.getName()));
+		Assert.assertEquals(selectedProductDetails.getPrice(), purchasedProductDetails.getPrice());
+		if(selectedProductDetails.getSeller().length()==purchasedProductDetails.getSeller().length())
+			Assert.assertEquals(selectedProductDetails.getSeller(), purchasedProductDetails.getSeller());
+		else
+			Assert.assertTrue(selectedProductDetails.getSeller().contains(purchasedProductDetails.getSeller()));
 		driver.close();
 		driver.switchTo().window(parentId);
 	}

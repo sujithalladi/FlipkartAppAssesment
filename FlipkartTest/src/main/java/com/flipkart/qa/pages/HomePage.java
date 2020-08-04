@@ -32,6 +32,7 @@ public class HomePage extends TestBase{
 	}
 	
 	public boolean verifyHomePageLogo(){
+		TestUtil.waitForWebElementToLoad(10);
 		return homePageExploreLogo.isEnabled();
 	}
 	
@@ -40,13 +41,11 @@ public class HomePage extends TestBase{
 	}
 	
 	public SearchPage SearchForSomethingUsingText(String str) throws IOException, InterruptedException{
-		TestUtil testUtil = new TestUtil();
-		testUtil.waitForWebElementToLoad(10);
+		TestUtil.waitForWebElementToLoad(10);
 		searchtextbox.click();
 		searchtextbox.sendKeys(str);
 		searchBtn.click();
 		return new SearchPage();
-		
 	}
 	
 	

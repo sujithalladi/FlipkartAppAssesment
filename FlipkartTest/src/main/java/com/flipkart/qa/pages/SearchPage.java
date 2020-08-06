@@ -24,7 +24,7 @@ public class SearchPage extends TestBase{
 	@FindBy(xpath="//button[@class='_2AkmmA _2Npkh4 _2MWPVK']")
 	WebElement addToCartBtn;  
 	
-	@FindBy(xpath="//button[@class='_2AkmmA _2Npkh4 _2kuvG8 _7UHT_c']")
+	@FindBy(xpath="//button[@type='button']")
 	WebElement buyNowBtn;
 	
 	@FindBy(xpath = "//span[@class='_35KyD6']")
@@ -58,8 +58,8 @@ public class SearchPage extends TestBase{
 		List<WebElement> li = driver.findElements(By.xpath("//div[@class='_3BTv9X']"));
 		Random r = new Random();
 		int randomValue = r.nextInt(li.size());
-		TestUtil.waitForWebElementToLoad(10);
 		li.get(randomValue).click();
+		TestUtil.waitForWebElementToLoad(20);
 	}
 
 	public boolean verifyAddToCartButton(){
@@ -84,6 +84,5 @@ public class SearchPage extends TestBase{
 		productDetails.setPrice(productPrice.getText());
 		productDetails.setSeller(productSeller.getText().substring(0, productSeller.getText().length()-3));
 		return productDetails;
-		
 	}
 }

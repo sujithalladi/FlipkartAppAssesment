@@ -5,9 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import com.flipkart.qa.ExcelLib.ReadDataFromExcel;
 import com.flipkart.qa.base.TestBase;
@@ -40,6 +38,7 @@ public class SearchPageTest extends TestBase{
 		username = readData.getData("Credentials", 1, 0);
 		password = readData.getData("Credentials", 1, 1);
 		searchForItem = readData.getData("Credentials", 1, 2);
+		homePage = loginPage.Login(username, password);
 	}
 
 	@Test(priority=1)
@@ -48,7 +47,6 @@ public class SearchPageTest extends TestBase{
 		Assert.assertTrue(flag);
 		String loginTitle = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(loginTitle, "Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!");
-		homePage = loginPage.Login(username, password);
 	}
 	
 	@Test(priority=2)
@@ -70,8 +68,9 @@ public class SearchPageTest extends TestBase{
 		Set<String> WindowIds = driver.getWindowHandles();
 		Iterator<String> itr = WindowIds.iterator();
 		String parentId = itr.next();	
-		TestUtil.waitForWebElementToLoad(10);
+		TestUtil.waitForWebElementToLoad(20);
 		String childId = itr.next();
+		TestUtil.waitForWebElementToLoad(20);
 		driver.switchTo().window(childId);
 		boolean addToCartFlag = searchPage.verifyAddToCartButton();
 		Assert.assertTrue(addToCartFlag);

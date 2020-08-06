@@ -18,17 +18,17 @@ public class TestUtil extends TestBase {
 		super();
 	}
 
-	public static long PAGE_LOAD_TIMEOUT = 30;
+	public static long PAGE_LOAD_TIMEOUT = 40;
 	public static long IMPLICIT_WAIT = 20;
 	
 	public Set<String> getWindowHandles(){
 		return driver.getWindowHandles();
 	}
 	
-	public static void waitForWebElementToLoad(long waittime){
-		driver.manage().timeouts().setScriptTimeout(waittime, TimeUnit.SECONDS);
+	public static void waitForWebElementToLoad(long waitTime){
+		driver.manage().timeouts().setScriptTimeout(waitTime, TimeUnit.SECONDS);
 	}
-	
+
 	public void switchToWindow(String WindowhandleId){	
 		driver.switchTo().window(WindowhandleId);
 	}

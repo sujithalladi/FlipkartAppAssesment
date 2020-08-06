@@ -3,9 +3,7 @@ package com.flipkart.qa.testCases;
 import java.io.IOException;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import com.flipkart.qa.ExcelLib.ReadDataFromExcel;
 import com.flipkart.qa.base.TestBase;
@@ -23,7 +21,7 @@ public class LoginPageTest extends TestBase{
 		super();
 	}
 
-	@BeforeMethod
+	@BeforeTest
 	public void setUp() throws IOException{	
 		initialization();
 		loginPage = new LoginPage();
@@ -50,7 +48,7 @@ public class LoginPageTest extends TestBase{
 		homePage = loginPage.Login(username, password);
 	}
 	
-	@AfterMethod
+	@AfterTest
 	public void tearDown(){
 		driver.quit();
 	}

@@ -6,9 +6,7 @@ import java.util.Set;
 
 import com.flipkart.qa.model.ProductDetails;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import com.flipkart.qa.ExcelLib.ReadDataFromExcel;
 import com.flipkart.qa.base.TestBase;
@@ -41,6 +39,7 @@ public class PaymentPageTest extends TestBase {
 		username = readData.getData("Credentials", 1, 0);
 		password = readData.getData("Credentials", 1, 1);
 		searchForItem = readData.getData("Credentials", 1, 2);
+		homePage = loginPage.Login(username, password);
 	}
 
 	@Test(priority = 1)
@@ -50,7 +49,7 @@ public class PaymentPageTest extends TestBase {
 		String loginTitle = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(loginTitle,
 				"Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!");
-		homePage = loginPage.Login(username, password);
+
 	}
 
 	@Test(priority = 2)
@@ -63,8 +62,8 @@ public class PaymentPageTest extends TestBase {
 	@Test(priority = 3)
 	public void clickOnBuyNowAndVerifyDetailsOnCheckoutPage()
 			throws IOException, InterruptedException {
-		searchPage = new SearchPage();
-		searchPage = homePage.SearchForSomethingUsingText(searchForItem);
+		TestUtil.waitForWebElementToLoad(10);
+		SearchPage searchPage = homePage.SearchForSomethingUsingText(searchForItem);
 		searchPage.verifyShowingTextForSearchedText();
 		searchPage.verifyRelevanceLink();
 		searchPage.SelectTheProdcut();
@@ -73,11 +72,12 @@ public class PaymentPageTest extends TestBase {
 		String parentId = itr.next();
 		TestUtil.waitForWebElementToLoad(20);
 		String childId = itr.next();
+		TestUtil.waitForWebElementToLoad(20);
 		driver.switchTo().window(childId);
-		boolean Cartflag = searchPage.verifyAddToCartButton();
-		Assert.assertTrue(Cartflag);
-		boolean buyflag = searchPage.verifyBuyNowButton();
-		Assert.assertTrue(buyflag);
+		boolean addToCartFlag = searchPage.verifyAddToCartButton();
+		Assert.assertTrue(addToCartFlag);
+		boolean buyNowFlag = searchPage.verifyBuyNowButton();
+		Assert.assertTrue(buyNowFlag);
 		ProductDetails selectedProductDetails=searchPage.captureProductDetails();
 		paymentPage = searchPage.clickOnBuyNowButton();
 		ProductDetails purchasedProductDetails=paymentPage.captureProductDetails();

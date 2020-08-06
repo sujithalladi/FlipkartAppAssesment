@@ -17,8 +17,8 @@ public class HomePage extends TestBase{
 	@FindBy(xpath="//div[contains(text(),'My Account')]")
 	WebElement myAccount;
 	
-	@FindBy(xpath = "//input[@type='text']")
-	WebElement searchtextbox;
+	@FindBy(name = "q")
+	WebElement searchTextBox;
 	
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement searchBtn;
@@ -41,11 +41,11 @@ public class HomePage extends TestBase{
 	}
 	
 	public SearchPage SearchForSomethingUsingText(String str) throws IOException, InterruptedException{
-		TestUtil.waitForWebElementToLoad(10);
-		if (searchtextbox.isDisplayed()){
-			searchtextbox.click();
+
+		if (searchTextBox.isEnabled()){
+			searchTextBox.click();
 			TestUtil.waitForWebElementToLoad(10);
-			searchtextbox.sendKeys(str);
+			searchTextBox.sendKeys(str);
 			searchBtn.click();
 		}
 		return new SearchPage();

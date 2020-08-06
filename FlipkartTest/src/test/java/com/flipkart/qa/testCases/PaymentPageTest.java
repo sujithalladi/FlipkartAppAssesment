@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
+import com.flipkart.qa.model.ProductDetails;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -27,7 +28,7 @@ public class PaymentPageTest extends TestBase {
 	private String password;
 	private String searchForItem;
 
-	public PaymentPageTest() throws IOException {
+	public PaymentPageTest() {
 		super();
 	}
 
@@ -73,10 +74,10 @@ public class PaymentPageTest extends TestBase {
 		TestUtil.waitForWebElementToLoad(20);
 		String childId = itr.next();
 		driver.switchTo().window(childId);
-		boolean addToCartflag = searchPage.verifyAddToCartButton();
-		Assert.assertTrue(addToCartflag);
-		boolean buyNowflag = searchPage.verifyBuyNowButton();
-		Assert.assertTrue(buyNowflag);
+		boolean Cartflag = searchPage.verifyAddToCartButton();
+		Assert.assertTrue(Cartflag);
+		boolean buyflag = searchPage.verifyBuyNowButton();
+		Assert.assertTrue(buyflag);
 		ProductDetails selectedProductDetails=searchPage.captureProductDetails();
 		paymentPage = searchPage.clickOnBuyNowButton();
 		ProductDetails purchasedProductDetails=paymentPage.captureProductDetails();

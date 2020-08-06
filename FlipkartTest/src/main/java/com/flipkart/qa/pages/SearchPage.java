@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
+import com.flipkart.qa.model.ProductDetails;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.flipkart.qa.base.TestBase;
-import com.flipkart.qa.testCases.ProductDetails;
 import com.flipkart.qa.util.TestUtil;
 
 public class SearchPage extends TestBase{
@@ -54,9 +54,11 @@ public class SearchPage extends TestBase{
 	}
 	
 	public void SelectTheProdcut() throws InterruptedException, IOException{
+		TestUtil.waitForWebElementToLoad(10);
 		List<WebElement> li = driver.findElements(By.xpath("//div[@class='_3BTv9X']"));
 		Random r = new Random();
 		int randomValue = r.nextInt(li.size());
+		TestUtil.waitForWebElementToLoad(10);
 		li.get(randomValue).click();
 	}
 

@@ -42,9 +42,12 @@ public class HomePage extends TestBase{
 	
 	public SearchPage SearchForSomethingUsingText(String str) throws IOException, InterruptedException{
 		TestUtil.waitForWebElementToLoad(10);
-		searchtextbox.click();
-		searchtextbox.sendKeys(str);
-		searchBtn.click();
+		if (searchtextbox.isDisplayed()){
+			searchtextbox.click();
+			TestUtil.waitForWebElementToLoad(10);
+			searchtextbox.sendKeys(str);
+			searchBtn.click();
+		}
 		return new SearchPage();
 	}
 	

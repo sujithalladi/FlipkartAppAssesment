@@ -2,32 +2,32 @@
 <testng-results skipped="0" failed="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="15988" started-at="2020-08-04T21:34:57Z" finished-at="2020-08-04T21:35:13Z">
+  <suite name="Default suite" duration-ms="15895" started-at="2020-08-22T13:54:25Z" finished-at="2020-08-22T13:54:41Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="15988" started-at="2020-08-04T21:34:57Z" finished-at="2020-08-04T21:35:13Z">
-      <class name="com.flipkart.qa.testCases.SearchPageTest">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.qa.testCases.SearchPageTest@11531931]" name="setup" is-config="true" duration-ms="10228" started-at="2020-08-05T03:04:57Z" finished-at="2020-08-05T03:05:08Z">
+    <test name="Default test" duration-ms="15895" started-at="2020-08-22T13:54:25Z" finished-at="2020-08-22T13:54:41Z">
+      <class name="com.flipkart.qa.testCases.PaymentPageTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@7e0babb1]" name="setup" is-config="true" duration-ms="8562" started-at="2020-08-22T19:24:25Z" finished-at="2020-08-22T19:24:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="login()[pri:1, instance:com.flipkart.qa.testCases.SearchPageTest@11531931]" name="login" duration-ms="584" started-at="2020-08-05T03:05:08Z" finished-at="2020-08-05T03:05:08Z">
+        <test-method status="PASS" signature="loginTest()[pri:1, instance:com.flipkart.qa.testCases.PaymentPageTest@7e0babb1]" name="loginTest" duration-ms="53" started-at="2020-08-22T19:24:33Z" finished-at="2020-08-22T19:24:34Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- login -->
-        <test-method status="PASS" signature="HomepageTest()[pri:2, instance:com.flipkart.qa.testCases.SearchPageTest@11531931]" name="HomepageTest" duration-ms="1079" started-at="2020-08-05T03:05:08Z" finished-at="2020-08-05T03:05:09Z">
+        </test-method> <!-- loginTest -->
+        <test-method status="PASS" signature="HomepageTest()[pri:2, instance:com.flipkart.qa.testCases.PaymentPageTest@7e0babb1]" name="HomepageTest" duration-ms="978" started-at="2020-08-22T19:24:34Z" finished-at="2020-08-22T19:24:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- HomepageTest -->
-        <test-method status="PASS" signature="searchForCameraToPurchase()[pri:3, instance:com.flipkart.qa.testCases.SearchPageTest@11531931]" name="searchForCameraToPurchase" duration-ms="3363" started-at="2020-08-05T03:05:09Z" finished-at="2020-08-05T03:05:13Z">
+        <test-method status="PASS" signature="clickOnBuyNowAndVerifyDetailsOnCheckoutPage()[pri:3, instance:com.flipkart.qa.testCases.PaymentPageTest@7e0babb1]" name="clickOnBuyNowAndVerifyDetailsOnCheckoutPage" duration-ms="5595" started-at="2020-08-22T19:24:34Z" finished-at="2020-08-22T19:24:40Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- searchForCameraToPurchase -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:com.flipkart.qa.testCases.SearchPageTest@11531931]" name="teardown" is-config="true" duration-ms="715" started-at="2020-08-05T03:05:13Z" finished-at="2020-08-05T03:05:13Z">
+        </test-method> <!-- clickOnBuyNowAndVerifyDetailsOnCheckoutPage -->
+        <test-method status="PASS" signature="teardown()[pri:0, instance:com.flipkart.qa.testCases.PaymentPageTest@7e0babb1]" name="teardown" is-config="true" duration-ms="697" started-at="2020-08-22T19:24:40Z" finished-at="2020-08-22T19:24:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- com.flipkart.qa.testCases.SearchPageTest -->
+      </class> <!-- com.flipkart.qa.testCases.PaymentPageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

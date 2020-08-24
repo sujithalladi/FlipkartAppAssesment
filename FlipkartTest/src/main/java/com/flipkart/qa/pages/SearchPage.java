@@ -20,8 +20,8 @@ public class SearchPage extends TestBase{
 	
 	@FindBy(xpath="//div[contains(text(),'Relevance')]")
 	WebElement relevanceLink;
-		
-	@FindBy(xpath="//button[@class='_2AkmmA _2Npkh4 _2MWPVK']")
+	
+	@FindBy(xpath="//button[contains(.,'ADD TO CART')]")
 	WebElement addToCartBtn;  
 	
 	@FindBy(xpath="//button[@type='button']")
@@ -30,11 +30,11 @@ public class SearchPage extends TestBase{
 	@FindBy(xpath = "//span[@class='_35KyD6']")
 	WebElement productName;
 	
-	@FindBy(xpath = "//div[@class='_1vC4OE _3qQ9m1']")
-	WebElement productPrice;
-	
 	@FindBy(xpath = "//div[@id='sellerName']")
 	WebElement productSeller;
+	
+	@FindBy(xpath = "//div[@class='_1vC4OE _3qQ9m1']")
+	WebElement productPrice;
 	
 	@FindBy(xpath = "//div[@class='hGSR34 YddkNl']")   
 	WebElement cameraSellerRating;
@@ -42,7 +42,6 @@ public class SearchPage extends TestBase{
 	public SearchPage() throws IOException {
 		PageFactory.initElements(driver, this);
 	}
-	
 	public boolean verifyShowingTextForSearchedText(){
 		return showing.isDisplayed();
 	}
@@ -52,7 +51,6 @@ public class SearchPage extends TestBase{
 	public boolean verifyRelevanceLink(){
 		return relevanceLink.isDisplayed();
 	}
-	
 	public void SelectTheProdcut() throws InterruptedException, IOException{
 		TestUtil.waitForWebElementToLoad(10);
 		List<WebElement> li = driver.findElements(By.xpath("//div[@class='_3BTv9X']"));

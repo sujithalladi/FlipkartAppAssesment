@@ -51,6 +51,7 @@ public class HomePageTest extends TestBase {
 	@Test(priority = 3)
 	public void verifyMyAccount() throws InterruptedException {
 		boolean flag = homepage.verifyMyaccountText();
+		
 		Assert.assertTrue(flag);
 	}
 
